@@ -4,7 +4,7 @@ import { ApiOkResponse, ApiProduces } from '@nestjs/swagger'
 import { AppService } from './app.service'
 
 @Controller()
-export class AppController {
+class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
@@ -14,3 +14,5 @@ export class AppController {
     return this.appService.getHello()
   }
 }
+
+export { AppController }
