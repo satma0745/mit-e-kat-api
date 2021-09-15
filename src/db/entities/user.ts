@@ -1,25 +1,26 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { EntitySchema } from 'typeorm'
+import { User } from '../../core/entities'
 
-interface IUserCredentials {
-  readonly username?: string
-  readonly password?: string
-}
+const UserEntity = new EntitySchema<User>({
+  name: 'User',
+  target: User,
+  tableName: 'users',
+  columns: {
+    id: {
+      type: String,
+      primary: true,
+      generated: 'uuid',
+    },
+    username: {
+      type: String,
+      length: 20,
+      unique: true,
+    },
+    password: {
+      type: String,
+      length: 20,
+    },
+  },
+})
 
-@Entity('users')
-class User implements IUserCredentials {
-  @PrimaryGeneratedColumn('uuid')
-  id: string
-
-  @Column({ length: 20, unique: true })
-  username: string
-
-  @Column({ length: 20 })
-  password: string
-
-  constructor({ username, password }: IUserCredentials = {}) {
-    this.username = username
-    this.password = password
-  }
-}
-
-export { User }
+export { UserEntity }

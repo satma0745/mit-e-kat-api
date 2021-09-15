@@ -7,7 +7,7 @@
   "database": "<pg database name>",
   "entities": ["dist/src/db/entities/*.js"],
   "migrationsTableName": "typeorm_migrations",
-  "migrations": ["src/db/migrations/*.js"],
+  "migrations": ["dist/src/db/migrations/*.js"],
   "cli": {
     "migrationsDir": "src/db/migrations"
   }
