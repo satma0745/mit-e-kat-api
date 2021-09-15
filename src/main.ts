@@ -3,7 +3,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common'
 import { DocumentBuilder, SwaggerCustomOptions, SwaggerModule } from '@nestjs/swagger'
 
 import { version } from '../package.json'
-import { AppModule } from './app.module'
+import { App } from './app'
 
 const configureApp = (app: INestApplication) => {
   app.setGlobalPrefix('api')
@@ -28,7 +28,7 @@ const configureSwagger = (app: INestApplication) => {
 }
 
 const bootstrap = async () => {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(App)
 
   configureApp(app)
   configureSwagger(app)

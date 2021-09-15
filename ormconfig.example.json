@@ -5,10 +5,10 @@
   "username": "<pg user's username>",
   "password": "<pg user's password>",
   "database": "<pg database name>",
-  "entities": ["dist/**/*.entity.js"],
+  "entities": ["dist/src/db/entities/*.js"],
   "migrationsTableName": "typeorm_migrations",
-  "migrations": ["migrations/*.js"],
+  "migrations": ["src/db/migrations/*.js"],
   "cli": {
-    "migrationsDir": "migrations"
+    "migrationsDir": "src/db/migrations"
   }
 }
