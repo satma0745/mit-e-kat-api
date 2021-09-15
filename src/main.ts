@@ -1,9 +1,14 @@
 import { NestFactory } from '@nestjs/core'
-import { INestApplication } from '@nestjs/common'
+import { INestApplication, ValidationPipe } from '@nestjs/common'
 import { DocumentBuilder, SwaggerCustomOptions, SwaggerModule } from '@nestjs/swagger'
 
 import { version } from '../package.json'
 import { AppModule } from './app.module'
+
+const configureApp = (app: INestApplication) => {
+  app.setGlobalPrefix('api')
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
+}
 
 const configureSwagger = (app: INestApplication) => {
   const config = new DocumentBuilder()
@@ -24,8 +29,8 @@ const configureSwagger = (app: INestApplication) => {
 
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule)
-  app.setGlobalPrefix('api')
 
+  configureApp(app)
   configureSwagger(app)
 
   await app.listen(5000)
