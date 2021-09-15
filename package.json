@@ -1,6 +1,6 @@
 {
   "name": "mitekat",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -9,6 +9,10 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "start": "nest start",
+    "migration:new": "npm run build && typeorm migration:generate --outputJs",
+    "migrations:list": "typeorm migration:show",
+    "migrations:apply": "typeorm migration:run",
+    "migration:undo": "typeorm migration:revert",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -23,10 +27,13 @@
     "@nestjs/core": "^8.0.6",
     "@nestjs/platform-express": "^8.0.6",
     "@nestjs/swagger": "^5.0.9",
+    "@nestjs/typeorm": "^8.0.2",
+    "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.3.0",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-ui-express": "^4.1.6",
+    "typeorm": "^0.2.37"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.1.1",

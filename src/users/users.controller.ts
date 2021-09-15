@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Param, Delete, ParseIntPipe, Put } from '@nestjs/common'
-import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
+import { Controller, Get, Post, Body, Param, Delete, Put, ParseUUIDPipe } from '@nestjs/common'
+import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger'
 
 import { UsersService } from './users.service'
 import { RegisterUserDto } from './dto/register-user.dto'
@@ -14,38 +14,41 @@ class UsersController {
   @Post()
   @ApiOperation({ summary: 'Register new user.' })
   @ApiCreatedResponse({ description: 'User registered successfully.' })
-  registerNewUser(@Body() createUserDto: RegisterUserDto) {
-    this.usersService.registerNewUser(createUserDto)
+  async registerNewUser(@Body() createUserDto: RegisterUserDto) {
+    await this.usersService.registerNewUser(createUserDto)
   }
 
   @Get()
   @ApiOperation({ summary: 'Get all users.' })
   @ApiOkResponse({ type: [UserDto], description: 'Users retrieved successfully.' })
-  getAllUsers() {
-    const users = this.usersService.getAllUsers()
+  async getAllUsers() {
+    const users = await this.usersService.getAllUsers()
     return users.map((user) => new UserDto(user))
   }
 
   @Get(':userId')
+  @ApiParam({ name: 'userId', type: 'string', format: 'uuid' })
   @ApiOperation({ summary: 'Get user with specified user id.' })
   @ApiOkResponse({ type: UserDto, description: 'User retrieved successfully.' })
-  getSingleUser(@Param('userId', ParseIntPipe) userId: number) {
-    const user = this.usersService.getSingleUser(userId)
+  async getSingleUser(@Param('userId', ParseUUIDPipe) userId: string) {
+    const user = await this.usersService.getSingleUser(userId)
     return new UserDto(user)
   }
 
   @Put(':userId')
+  @ApiParam({ name: 'userId', type: 'string', format: 'uuid' })
   @ApiOperation({ summary: 'Update user with specified user id.' })
   @ApiOkResponse({ description: 'User updated successfully.' })
-  updateUser(@Param('userId', ParseIntPipe) userId: number, @Body() updateUserDto: UpdateUserDto) {
-    this.usersService.updateUser(userId, updateUserDto)
+  async updateUser(@Param('userId', ParseUUIDPipe) userId: string, @Body() updateUserDto: UpdateUserDto) {
+    await this.usersService.updateUser(userId, updateUserDto)
   }
 
   @Delete(':userId')
+  @ApiParam({ name: 'userId', type: 'string', format: 'uuid' })
   @ApiOperation({ summary: 'Delete user with specified user id.' })
   @ApiOkResponse({ description: 'User deleted successfully.' })
-  deleteUser(@Param('userId', ParseIntPipe) userId: number) {
-    this.usersService.deleteUser(userId)
+  async deleteUser(@Param('userId', ParseUUIDPipe) userId: string) {
+    await this.usersService.deleteUser(userId)
   }
 }
 

@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
 
 import { RegisterUserDto } from './dto/register-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
@@ -6,28 +8,36 @@ import { User } from './entities/user.entity'
 
 @Injectable()
 class UsersService {
-  private _users: User[] = []
+  private readonly usersRepository: Repository<User>
 
-  registerNewUser(registerUserDto: RegisterUserDto) {
-    const user = new User(registerUserDto)
-    this._users.push(user)
+  constructor(@InjectRepository(User) usersRepository: Repository<User>) {
+    this.usersRepository = usersRepository
+  }
+
+  async registerNewUser(registerUserDto: RegisterUserDto) {
+    const user = this.usersRepository.create(registerUserDto)
+    await this.usersRepository.save(user)
   }
 
   getAllUsers() {
-    return this._users
+    return this.usersRepository.find()
   }
 
-  getSingleUser(id: number) {
-    return this._users.find((user) => user.id === id)
+  getSingleUser(id: string) {
+    return this.usersRepository.findOne(id)
   }
 
-  updateUser(id: number, updateUserDto: UpdateUserDto) {
-    const user = this._users.find((user) => user.id === id)
-    user.updateCredentials(updateUserDto)
+  async updateUser(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.usersRepository.findOne(id)
+
+    user.username = updateUserDto.username
+    user.password = updateUserDto.password
+
+    await this.usersRepository.save(user)
   }
 
-  deleteUser(id: number) {
-    this._users = this._users.filter((user) => user.id !== id)
+  async deleteUser(id: string) {
+    await this.usersRepository.delete(id)
   }
 }
 

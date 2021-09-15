@@ -1,13 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 interface IUserInfo {
-  readonly id: number
+  readonly id: string
   readonly username: string
 }
 
 class UserDto implements IUserInfo {
-  @ApiProperty({ example: 745 })
-  readonly id: number
+  @ApiProperty({ example: '07450745-0745-0745-0745-074507450745' })
+  readonly id: string
 
   @ApiProperty({ example: 'qwerty' })
   readonly username: string

@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "<pg host>",
+  "port": "<pg port>",
+  "username": "<pg user's username>",
+  "password": "<pg user's password>",
+  "database": "<pg database name>",
+  "entities": ["dist/**/*.entity.js"],
+  "migrationsTableName": "typeorm_migrations",
+  "migrations": ["migrations/*.js"],
+  "cli": {
+    "migrationsDir": "migrations"
+  }
+}
