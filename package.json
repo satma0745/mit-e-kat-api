@@ -1,6 +1,6 @@
 {
   "name": "mitekat",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -9,7 +9,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "start": "nest start",
-    "migration:new": "npm run build && typeorm migration:generate --outputJs",
+    "migration:new": "npm run build && typeorm migration:generate",
     "migrations:list": "typeorm migration:show",
     "migrations:apply": "typeorm migration:run",
     "migration:undo": "typeorm migration:revert",

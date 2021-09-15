@@ -1,9 +1,9 @@
-const { Table } = require('typeorm')
+import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
-class addUsers1631690203188 {
+class addUsers1631690203188 implements MigrationInterface {
   name = '1631690203188-add-users'
 
-  up(queryRunner) {
+  up(queryRunner: QueryRunner) {
     return queryRunner.createTable(
       new Table({
         name: 'users',
@@ -16,9 +16,9 @@ class addUsers1631690203188 {
     )
   }
 
-  down(queryRunner) {
+  down(queryRunner: QueryRunner) {
     return queryRunner.dropTable('users')
   }
 }
 
-module.exports = addUsers1631690203188
+export { addUsers1631690203188 }
