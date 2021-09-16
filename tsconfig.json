@@ -12,6 +12,11 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@api/*": ["src/api/*"],
+      "@core/*": ["src/core/*"],
+      "@db/*": ["src/db/*"]
+    }
   }
 }

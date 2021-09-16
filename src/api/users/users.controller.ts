@@ -8,7 +8,7 @@ import {
   RegisterUserRequest,
   UpdateUserRequest,
   DeleteUserRequest,
-} from '../../core/services/users'
+} from '@core/services/users'
 
 import { RegisterUserDto, UpdateUserDto, UserDto } from './users.dtos'
 
