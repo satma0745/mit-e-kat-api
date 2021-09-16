@@ -1,6 +1,6 @@
 {
   "name": "mitekat",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -35,6 +35,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.3.0",
     "swagger-ui-express": "^4.1.6",
+    "ts-pattern": "^3.2.5",
     "typeorm": "^0.2.37"
   },
   "devDependencies": {
