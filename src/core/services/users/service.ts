@@ -4,13 +4,7 @@ import { Repository } from 'typeorm'
 
 import { User } from '@core/entities'
 
-import {
-  GetUsersRequest,
-  GetUserRequest,
-  RegisterUserRequest,
-  UpdateUserRequest,
-  DeleteUserRequest,
-} from './users.requests'
+import { GetUsersRequest, GetUserRequest, RegisterUserRequest, UpdateUserRequest, DeleteUserRequest } from './requests'
 
 @Injectable()
 class UsersService {

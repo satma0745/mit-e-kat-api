@@ -1,2 +1,2 @@
-export * from './users.requests'
-export * from './users.service'
+export * from './requests'
+export * from './service'

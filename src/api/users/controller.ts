@@ -10,7 +10,7 @@ import {
   DeleteUserRequest,
 } from '@core/services/users'
 
-import { RegisterUserDto, UpdateUserDto, UserDto } from './users.dtos'
+import { RegisterUserDto, UpdateUserDto, UserDto } from './dtos'
 
 @ApiTags('users')
 @Controller('users')
